@@ -1,0 +1,10 @@
+TopLogicApp/TopLogic.Core/bin/
+TopLogicApp/TopLogic.Core/obj/
+TopLogicApp/TopLogic.DataSource/bin/
+TopLogicApp/TopLogic.DataSource/obj/
+TopLogicApp/TopLogic.Services/bin/
+TopLogicApp/TopLogic.Services/obj/
+TopLogicApp/TopLogic.UnitTests/bin/
+TopLogicApp/TopLogic.UnitTests/obj/
+TopLogicApp/TopLogicApp.API/bin/
+TopLogicApp/TopLogicApp.API/obj/
