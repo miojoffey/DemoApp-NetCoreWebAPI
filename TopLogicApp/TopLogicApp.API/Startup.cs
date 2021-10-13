@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TopLogic.Services;
-using TopLogic.Services.Interfaces;
+using TopLogicApp.API.Extensions;
 
 namespace TopLogicApp.API
 {
@@ -22,8 +21,9 @@ namespace TopLogicApp.API
         {
             services.AddControllers();
 
-            // DIs here
-            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.ConfigureAppDependencies(Configuration);
+
+            services.ConfigureAppAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

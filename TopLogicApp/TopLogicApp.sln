@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopLogicApp.API", "TopLogicApp.API\TopLogicApp.API.csproj", "{DC71355B-DC70-4B3F-BBA6-33E0FB201E49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLogicApp.API", "TopLogicApp.API\TopLogicApp.API.csproj", "{DC71355B-DC70-4B3F-BBA6-33E0FB201E49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopLogic.Core", "TopLogic.Core\TopLogic.Core.csproj", "{0D7A5730-1C6F-4898-9078-01735F97B6C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLogic.Core", "TopLogic.Core\TopLogic.Core.csproj", "{0D7A5730-1C6F-4898-9078-01735F97B6C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopLogic.DataSource", "TopLogic.DataSource\TopLogic.DataSource.csproj", "{3E7C6BA9-A2FC-4254-A93F-429A9E6294EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLogic.DataSource", "TopLogic.DataSource\TopLogic.DataSource.csproj", "{3E7C6BA9-A2FC-4254-A93F-429A9E6294EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopLogic.Services", "TopLogic.Services\TopLogic.Services.csproj", "{A759B171-D8EF-4EC5-B4C4-46C0051F8595}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLogic.Services", "TopLogic.Services\TopLogic.Services.csproj", "{A759B171-D8EF-4EC5-B4C4-46C0051F8595}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopLogic.UnitTests", "TopLogic.UnitTests\TopLogic.UnitTests.csproj", "{E8001774-5DE7-420F-A981-B7B9DC1F0BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopLogic.UnitTests", "TopLogic.UnitTests\TopLogic.UnitTests.csproj", "{E8001774-5DE7-420F-A981-B7B9DC1F0BF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

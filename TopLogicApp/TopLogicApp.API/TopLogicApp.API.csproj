@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="App.config" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="App.config" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
   </ItemGroup>
 
   <ItemGroup>
