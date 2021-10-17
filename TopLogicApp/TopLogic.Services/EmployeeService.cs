@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TopLogic.Core.Exceptions;
 using TopLogic.DataSource;
 using TopLogic.Services.Interfaces;
 
 namespace TopLogic.Services
 {
-    public class EmployeeService: BaseService, IEmployeeService
+    public class EmployeeService: DBService, IEmployeeService
     {        
         public EmployeeService(string dbConnection)
             : base(dbConnection)
@@ -22,7 +23,8 @@ namespace TopLogic.Services
                     return await context.Employees.ToListAsync();
                 }
             }
-            catch (Exception error) {
+            catch (Exception e) 
+            {
                 throw;
             }
         }

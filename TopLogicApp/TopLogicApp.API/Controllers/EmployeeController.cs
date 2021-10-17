@@ -32,16 +32,10 @@ namespace TopLogicApp.API.Controllers
             Duration = 60)]
         public async Task<IActionResult> GetEmployees()
         {
-            try {
-                var result = await _employeeService.GetEmployees();
-               
-                var dtoEmployees = _mapper.Map<IEnumerable<EmployeeDTO>>(result);
+            var result = await _employeeService.GetEmployees();               
+            var dtoEmployees = _mapper.Map<IEnumerable<EmployeeDTO>>(result);
                 
-                return Ok(dtoEmployees);
-            }
-            catch (Exception ex) {
-                return StatusCode(500, ex.Message);
-            }
+            return Ok(dtoEmployees);
         }            
     }
 }

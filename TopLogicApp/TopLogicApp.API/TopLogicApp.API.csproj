@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TopLogic.Core\TopLogic.Core.csproj" />
     <ProjectReference Include="..\TopLogic.Services\TopLogic.Services.csproj" />
   </ItemGroup>
 

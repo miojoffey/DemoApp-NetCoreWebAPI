@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TopLogic.Core\TopLogic.Core.csproj" />
     <ProjectReference Include="..\TopLogic.DataSource\TopLogic.DataSource.csproj" />
   </ItemGroup>
 

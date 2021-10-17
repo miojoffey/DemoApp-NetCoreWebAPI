@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using TopLogicApp.API.Extensions;
 
 namespace TopLogicApp.API
@@ -21,18 +22,26 @@ namespace TopLogicApp.API
         {
             services.AddControllers();
 
+            // Custom configuration
+            services.ConfigureAppJsonSerializer();
             services.ConfigureAppDependencies(Configuration);
-
             services.ConfigureAppAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+            IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // application error handler
+            app.ConfigureAppExceptionHandler();
+
+            // Middlewares
+            app.ConfigureAppMiddlewares();
 
             app.UseHttpsRedirection();
 
@@ -43,7 +52,7 @@ namespace TopLogicApp.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
+            });            
         }
     }
 }
