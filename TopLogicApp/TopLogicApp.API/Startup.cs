@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using TopLogicApp.API.Extensions;
 
 namespace TopLogicApp.API
@@ -38,7 +37,7 @@ namespace TopLogicApp.API
             }
 
             // application error handler
-            app.ConfigureAppExceptionHandler();
+            app.ConfigureAppExceptionHandler(Configuration);
 
             // Middlewares
             app.ConfigureAppMiddlewares();
@@ -52,7 +51,7 @@ namespace TopLogicApp.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });            
+            });   
         }
     }
 }

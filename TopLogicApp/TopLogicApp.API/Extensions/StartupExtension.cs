@@ -10,6 +10,7 @@ using Newtonsoft.Json.Serialization;
 using TopLogic.Core.Models;
 using TopLogic.Services;
 using TopLogic.Services.Interfaces;
+using TopLogicApp.API.DTO;
 using TopLogicApp.API.Middlewares;
 
 namespace TopLogicApp.API.Extensions
@@ -19,15 +20,16 @@ namespace TopLogicApp.API.Extensions
         public static void ConfigureAppJsonSerializer(this IServiceCollection services)
         {
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore
             };
         }
 
         public static void ConfigureAppDependencies(this IServiceCollection services,
             IConfiguration config)
         {
-            var dbConnection = config.GetConnectionString(AppConstants.AppSetting_DefaultConnectionKey);
-
+            // employee
+            var dbConnection = config.GetConnectionString(AppConstants.AppSetting_DefaultConnection);
             services.AddScoped<IEmployeeService>(options => new EmployeeService(dbConnection));
         }
 
@@ -36,9 +38,21 @@ namespace TopLogicApp.API.Extensions
             services.AddAutoMapper(typeof(MappingExtension));
         }
 
-        public static void ConfigureAppExceptionHandler(this IApplicationBuilder app)
+        public static void ConfigureAppExceptionHandler(this IApplicationBuilder app,
+            IConfiguration config)
         {
             app.UseExceptionHandler(options => {
+
+                // azure storage queue
+                var azureStorageQueue = config
+                    .GetSection(AppConstants.AppSetting_AzureStorageQueue)
+                    .Get<AzureStorageQueueDTO>();
+
+                // error log service
+                var errorLogService = new ErrorLogService(
+                    azureStorageQueue.Connection,
+                    azureStorageQueue.ErrorLogQueueName);
+
                 options.Run(async context => {
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     context.Response.ContentType = "application/json";
@@ -47,17 +61,20 @@ namespace TopLogicApp.API.Extensions
                     var exception = exceptionHandler?.Error;
 
                     if (exception != null) {
-                        var error = JsonConvert.SerializeObject(new ExceptionDetails() {
+                        var error = new ExceptionDetails() {
+                            StatusCode = context.Response.StatusCode,
                             ExceptionType = exception.GetType().Name,
                             Message = exception.Message,
-                            DateRecorded = DateTime.UtcNow,
-                            StackTrace = exception.StackTrace
-                        });
+                            DateRecorded = DateTime.UtcNow
+                        };
 
-                        await context.Response.WriteAsync(error);
-                    }
+                        // write to response
+                        await context.Response.WriteAsync(JsonConvert.SerializeObject(error));
 
-                    // log to queue service
+                        // write to log
+                        error.StackTrace = exception.StackTrace;
+                        await errorLogService.WriteAsync(error);
+                    }                    
                 });
             });
         }

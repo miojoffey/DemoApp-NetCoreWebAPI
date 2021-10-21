@@ -8,3 +8,5 @@ TopLogicApp/TopLogic.UnitTests/bin/
 TopLogicApp/TopLogic.UnitTests/obj/
 TopLogicApp/TopLogicApp.API/bin/
 TopLogicApp/TopLogicApp.API/obj/
+TopLogicApp/TopLogic.TaskScheduler.ErrorLogService/bin/
+TopLogicApp/TopLogic.TaskScheduler.ErrorLogService/obj/

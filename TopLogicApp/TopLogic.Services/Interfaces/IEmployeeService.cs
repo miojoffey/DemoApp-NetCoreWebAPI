@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using TopLogic.DataSource;
-
-namespace TopLogic.Services.Interfaces
+﻿namespace TopLogic.Services.Interfaces
 {
-    public interface IEmployeeService
+    public interface IEmployeeService: IDbTransaction
     {
-        Task<IEnumerable<Employee>> GetEmployees();
     }
 }

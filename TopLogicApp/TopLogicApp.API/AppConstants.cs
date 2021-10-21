@@ -2,7 +2,7 @@
 {
     public static class AppConstants
     {
-        public const string AppSetting_DefaultConnectionKey = "DefaultConnection";
-        public const string AppSerring_AzureQueueStorageConnectionKey = "AzureQueueStorageConnection";
+        public const string AppSetting_DefaultConnection = "DefaultConnection";
+        public const string AppSetting_AzureStorageQueue = "AzureStorageQueue";
     }
 }
